@@ -1,0 +1,12 @@
+@import "reveal-js/css/theme/template/mixins";
+@import "reveal-js/css/theme/template/settings";
+@import "reveal-js/css/theme/source/night";
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
+$mainFontSize: 40px;
+$blockMargin: 0px;
+$codeFont: 'Source Code Pro', monospace;
+
+.highlight pre{
+    border-radius: 10px;
+}
+@import "reveal-js/css/theme/template/theme";
