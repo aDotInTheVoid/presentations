@@ -159,7 +159,7 @@ impl AbsDiffEq for Complex {
     fn default_epsilon() -> Self::Epsilon {
         f32::default_epsilon()
     }
-    
+
     fn abs_diff_eq(
         &self,
         other: &Self,
@@ -193,3 +193,4 @@ impl RelativeEq for Complex {
     }
 }
 ```
+{{% /section %}}
