@@ -32,6 +32,7 @@ weight = 10
 - The type system detects concurrent access to data and requires synchronisation
 - No data races
 - Good synchronization types (atomics, mutex) available
+- Async functions are first class citizens
 
 ---
 
