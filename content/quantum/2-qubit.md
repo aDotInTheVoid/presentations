@@ -4,6 +4,7 @@ weight=30
 {{% section %}}
 # Building a Qubit
 ---
+
 ```rs
 use std::f32::consts::FRAC_1_SQRT_2;
 use std::ops::Neg;
@@ -18,6 +19,14 @@ use crate::complex::Complex;
 use approx::{AbsDiffEq, RelativeEq};
 ```
 ---
+## Qubits
+
+
+- $ \ket{\psi} = \alpha\ket{0} + \beta\ket{1} $
+- $ \alpha,\ \beta\in\  ℂ $
+- $ |\alpha|^2 + |\beta|^2 = 1$
+- $|\alpha|^2$ is the probability of observing $\ket{0}$
+- Stored as $\begin{bmatrix}\alpha\cr \beta \end{bmatrix}$
 ```rust
 #[derive(Debug, Clone, PartialEq)]
 pub struct Qubit {
@@ -35,6 +44,7 @@ impl Qubit {
     }
 ```
 ---
+$$\ket{+} = \frac{\ket{0}+\ket{1}}{\sqrt{2}},\ \ \ket{-} = \frac{\ket{0}-\ket{1}}{\sqrt{2}}$$
 ```rust
     pub fn zero() -> Self {
         Self::new(Complex::one(), Complex::zero())
@@ -68,6 +78,7 @@ $$ \ket{\psi} = e^{i\gamma}(\cos\frac{\theta}{2}\ket0 + e^{i\phi}\sin\frac{\thet
 }
 ```
 ---
+
 $$ \ket{\psi} = \cos\frac{\theta}{2}\ket0 + e^{i\phi}\sin\frac{\theta}{2}\ket1$$
 ```rust
     pub fn from_theta_phi(theta: f32, phi: f32) -> Self {
@@ -77,6 +88,10 @@ $$ \ket{\psi} = \cos\frac{\theta}{2}\ket0 + e^{i\phi}\sin\frac{\theta}{2}\ket1$$
         )
     }
 ```
+---
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Bloch_Sphere.svg" style="filter: invert(100%);width:45%;" />
+
+
 ---
 ```rust
     pub fn sample_is_zero(&self) -> bool {

@@ -4,6 +4,7 @@ weight=20
 {{% section %}}
 # Complex
 ---
+## Imports
 ```rust
 use approx::{AbsDiffEq, RelativeEq};
 use num_traits::identities::{One, Zero};
@@ -15,13 +16,6 @@ use std::ops::{
 ```
 ---
 ```rust
-/// A complex number
-///
-/// ```rust
-/// # use toy_quant::complex::Complex;
-/// let x = Complex::new(1.0, 0.0);
-/// assert_eq!(x, Complex::one());
-/// ```
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Complex {
     re: f32,
@@ -31,71 +25,49 @@ pub struct Complex {
 ---
 ```rust
 impl Complex {
-    /// Create a complex number from a real and imaginary part
     pub fn new(re: f32, im: f32) -> Self {
         Self { re, im }
     }
-```
----
-```rust
-    /// Create a complex number from a modulus and argument
+
     pub fn mod_arg(r: f32, theta: f32) -> Self {
         Self {
             re: r * theta.cos(),
             im: r * theta.sin(),
         }
     }
-```
----
-```rust
-    /// Create a complex number e^ix, equivalent to mod_arg(1, x)
+
     pub fn exp_ix(x: f32) -> Complex {
         Complex::mod_arg(1.0, x)
     }
-```
----
-```rust
-    /// Create a complex number with a real part and no imaginary part
+
     pub fn from_re(re: f32) -> Complex {
         Self { re, im: 0.0 }
     }
 ```
 ---
 ```rust
-    /// The complex number 0 + 0i
     pub fn zero() -> Complex {
         Complex::new(0.0, 0.0)
     }
 
-    /// The complex number 1 + 0i
     pub fn one() -> Complex {
         Complex::new(1.0, 0.0)
     }
-```
----
-```rust
-    /// √-1
+
     pub fn i() -> Complex {
         Complex::new(0.0, 1.0)
     }
 ```
 ---
 ```rust
-    /// |x|²
     pub fn mag_square(self) -> f32 {
         self.re.powi(2) + self.im.powi(2)
     }
-```
----
-```rust
-    /// |x|
+
     pub fn norm(self) -> f32 {
         self.re.hypot(self.im)
     }
-```
----
-```rust
-    /// The complex conjugate. Re(x) - i Im (x). a-bi
+
     pub fn conj(self) -> Self {
         Self {
             re: self.re,
@@ -115,9 +87,7 @@ impl Add<Complex> for Complex {
         }
     }
 }
-```
----
-```rust
+
 impl Sub<Complex> for Complex {
     type Output = Self;
     fn sub(self, other: Self) -> Self {
@@ -139,9 +109,7 @@ impl Mul<Complex> for Complex {
         }
     }
 }
-```
----
-```rust
+
 impl Mul<f32> for Complex {
     type Output = Self;
     fn mul(self, other: f32) -> Self {
@@ -160,17 +128,13 @@ impl Mul<Complex> for f32 {
         other * self
     }
 }
-```
----
-```rust
+
 impl From<f32> for Complex {
     fn from(num: f32) -> Complex {
         Complex::from_re(num)
     }
 }
-```
----
-```rust
+
 impl From<u8> for Complex {
     fn from(num: u8) -> Complex {
         Complex::from_re(num.into())
@@ -178,23 +142,21 @@ impl From<u8> for Complex {
 }
 ```
 ---
+
+$$
+\frac{a+bi}{c+di}=\frac{(a+bi)(c-di)}{(c+di)(c-di)}=\frac{(ac+bd)+i(bc-ad)}{c^2+d^2}
+$$
 ```rust
 impl Div<Complex> for Complex {
     type Output = Self;
-    // We have tests for this, and clippy freaks out
-    // when I have a addition in a division function.
-    #[allow(clippy::suspicious_arithmetic_impl)]
     fn div(self, other: Self) -> Self {
-        let a = self.re;
-        let b = self.im;
-        let c = other.re;
-        let d = other.im;
-        // a+bi   (a+bi)(c-di)   (ac+bd) + i(bc-ad)
-        // ---- = ------------ = ------------------
-        // c+di   (c+di)(c-di)     c^2 + d^2
+        let Self { re: a, im: b } = self;
+        let Self { re: c, im: d } = other;
+
         let denom = c.powi(2) + d.powi(2);
         let rep = a * c + b * d;
         let imp = b * c - a * d;
+
         Self {
             re: rep / denom,
             im: imp / denom,
@@ -209,25 +171,16 @@ impl AddAssign for Complex {
         *self = *self + other;
     }
 }
-```
----
-```rust
 impl SubAssign for Complex {
     fn sub_assign(&mut self, other: Complex) {
         *self = *self - other;
     }
 }
-```
----
-```rust
 impl MulAssign for Complex {
     fn mul_assign(&mut self, other: Complex) {
         *self = *self * other;
     }
 }
-```
----
-```rust
 impl DivAssign for Complex {
     fn div_assign(&mut self, other: Complex) {
         *self = *self / other;
@@ -257,9 +210,7 @@ impl Zero for Complex {
         self == &Self::zero()
     }
 }
-```
----
-```rust
+
 impl One for Complex {
     fn one() -> Self {
         (1.0).into()
