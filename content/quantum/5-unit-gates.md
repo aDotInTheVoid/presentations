@@ -5,6 +5,8 @@ weight=60
 # Unary Gates
 ---
 ```rust
+//! Gates that map a qubit to a qubit
+
 use std::f32::consts::FRAC_1_SQRT_2;
 
 use crate::complex::Complex;
@@ -32,7 +34,6 @@ impl UnaryGate {
         assert_relative_eq!(x, Matrix::identity());
         Self { mat }
     }
-
     pub fn run(&self, q: Qubit) -> Qubit {
         Qubit {
             inner: self.mat * q.inner,
@@ -42,63 +43,14 @@ impl UnaryGate {
 ```
 ---
 ```rust
-pub mod gates {
-    use super::*;
-```
----
-```rust
-    pub fn not() -> UnaryGate {
-        UnaryGate::new(Matrix::new(zero(), one(), one(), zero()))
-    }
-```
----
-```rust
-    pub fn z() -> UnaryGate {
-        UnaryGate::new(Matrix::new(
-            one(),
-            zero(),
-            zero(),
-            -one::<Complex>(),
-        ))
-    }
-```
----
-```rust
-    pub fn h() -> UnaryGate {
-        UnaryGate::new(
-            Matrix::new(one(), one(), one(), -one::<Complex>())
-                .map(|x| x * FRAC_1_SQRT_2),
+pub fn h() -> UnaryGate {
+    UnaryGate::new(
+        Matrix::new(
+            one(), one(), 
+            one(), -one::<Complex>(), 
         )
-    }
-```
----
-```rust
-    pub mod pauli {
-        use super::*;
-```
----
-```rust
-        pub fn x() -> UnaryGate {
-            not()
-        }
-```
----
-```rust
-        pub fn y() -> UnaryGate {
-            UnaryGate::new(Matrix::new(
-                zero(),
-                -Complex::i(),
-                Complex::i(),
-                zero(),
-            ))
-        }
-```
----
-```rust
-        pub fn z() -> UnaryGate {
-            super::z()
-        }
-    }
+        .map(|x| x * FRAC_1_SQRT_2),
+    )
 }
 ```
 {{% /section %}}

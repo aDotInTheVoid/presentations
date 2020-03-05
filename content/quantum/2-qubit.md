@@ -11,9 +11,6 @@ use rand::prelude::*;
 use rand::rngs::SmallRng;
 
 use crate::complex::Complex;
-
-use approx::{AbsDiffEq, RelativeEq};
-
 ```
 ---
 - $ \ket{\psi} = \alpha\ket{0} + \beta\ket{1} $
