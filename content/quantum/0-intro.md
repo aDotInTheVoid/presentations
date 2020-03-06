@@ -6,11 +6,9 @@ weight=10
 
 ---
 
-## Quantum Computing without quantum physics
-
----
-
-## Qubits
+## Principle
+- Quantum Computing without quantum physics
+- Complex numbers and linear algebra (matrices/vectors)
 
 ---
 
@@ -23,6 +21,7 @@ to build reliable and efficient software."*
 - C like syntax
 - Haskell like types
 - Great docs/errors/threading/toolchain
+- Great dependency management and linear algebra packages
 
 ---
 ```rust

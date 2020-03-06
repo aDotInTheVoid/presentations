@@ -44,5 +44,7 @@ weight=90
 ## Noise simulation
 - Real quantum computers have random errors called noise
 - It would be nice to simulate this
-
+---
+## The code
+- `https://github.com/aDotInTheVoid/toy-quant`
 {{% /section %}}

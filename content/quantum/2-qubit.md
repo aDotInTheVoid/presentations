@@ -18,8 +18,8 @@ use crate::complex::Complex;
 ---
 ## Type definitions
 - $ \ket{\psi} = \alpha\ket{0} + \beta\ket{1} $
-- $ \alpha,\ \beta\in\  ℂ $
-- $ |\alpha|^2 + |\beta|^2 = 1$
+- $ \alpha,\ \beta\in\Complex $
+- $ |\alpha|^2 + |\beta|^2 = 1$, as $|\alpha|^2$ is the probabilty of reading $\ket{0}$
 - $\ket{0}$ and $\ket{1}$ can be thought as orthogonal basis vectors
 - Stored as $\begin{bmatrix}\alpha\cr \beta \end{bmatrix}$
 ```rust

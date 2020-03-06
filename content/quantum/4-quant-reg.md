@@ -4,6 +4,13 @@ weight=50
 {{% section %}}
 # Quantum Registers
 ---
+## 2 Qubits
+- $\ket{\psi} = \alpha\ket{00}+\beta\ket{01}+\gamma\ket{10}+\delta\ket{11}$
+- $ |\alpha|^2 + |\beta|^2 + |\gamma|^2 + |\delta|^2=1$
+- Stored as $\begin{bmatrix}\alpha\cr\beta\cr\gamma\cr\delta\end{bmatrix}$
+- This is why $n$ qubits need $2^n$ numbers to represent them.
+- Generalized to any number of qubits
+---
 ## Imports
 ```rust
 use std::convert::TryInto;
@@ -38,7 +45,7 @@ impl<N: nalgebra::dimension::DimName> QuantumRegister<N>
 where
     DefaultAllocator: Allocator<Complex, N>,
 {
-    pub fn from_vector(qubits: VectorN<Complex, N>) -> Self {
+    pub(crate) fn from_vector(qubits: VectorN<Complex, N>) -> Self {
         Self { qubits }
     }
 

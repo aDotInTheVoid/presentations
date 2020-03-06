@@ -6,5 +6,4 @@ margin = -0.25
 custom_theme="wide.scss"
 custom_theme_compile=true
 +++
-# A toy Quantum Computer
-## In Rust!
+# A Toy Quantum Computer in Rust!

@@ -13,7 +13,7 @@ use std::ops::{Add, AddAssign, Mul, MulAssign, Neg};
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Complex {
-    re: f32,
+    re: f32, 
     im: f32,
 }
 ```
