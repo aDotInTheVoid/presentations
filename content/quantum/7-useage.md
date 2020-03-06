@@ -2,8 +2,9 @@
 weight=80
 +++
 {{% section %}}
-# Usage Example
+# Usage: Bell states
 ---
+## Imports
 ```rust
 use nalgebra::dimension::U4;
 use toy_quant::{
@@ -13,6 +14,11 @@ use toy_quant::{
 };
 ```
 ---
+## The circuit
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/The_Hadamard-CNOT_transform_on_the_zero-state.png" style="filter: invert(100%);"/>
+
+---
+## The circuit code
 ```rust
 fn entangle_qubits(
     ket_a: Qubit,
@@ -24,6 +30,7 @@ fn entangle_qubits(
 }
 ```
 ---
+## Helper function
 ```rust
 fn eval_qubits(ket_a: Qubit, ket_b: Qubit) {
     println!("∣{}{}⟩ becomes", ket_a.sample(), ket_b.sample());
@@ -39,6 +46,7 @@ fn eval_qubits(ket_a: Qubit, ket_b: Qubit) {
 }
 ```
 ---
+## Main function
 ```rust
 fn main() {
     eval_qubits(Qubit::zero(), Qubit::zero());
@@ -48,6 +56,7 @@ fn main() {
 }
 ```
 ---
+## What should happen
 |In|Out|
 |--|--|
 |$\ket{00}$|$\frac{\ket{00}+\ket{11}}{\sqrt{2}}$|
@@ -56,20 +65,21 @@ fn main() {
 |$\ket{11}$|$\frac{\ket{01}-\ket{10}}{\sqrt{2}}$|
 
 ---
+# The output
 ```txt
-∣00⟩ becomes ∣01⟩ becomes ∣10⟩ becomes ∣11⟩ becomes                        
-∣00⟩ * 0.506 ∣00⟩ * 0     ∣00⟩ * 0.492 ∣00⟩ * 0                          
-∣01⟩ * 0     ∣01⟩ * 0.481 ∣01⟩ * 0     ∣01⟩ * 0.498                  
-∣10⟩ * 0     ∣10⟩ * 0.519 ∣10⟩ * 0     ∣10⟩ * 0.502                  
-∣11⟩ * 0.494 ∣11⟩ * 0     ∣11⟩ * 0.508 ∣11⟩ * 0                          
+∣00⟩ becomes    ∣01⟩ becomes    ∣10⟩ becomes    ∣11⟩ becomes                        
+∣00⟩ * 0.506    ∣00⟩ * 0        ∣00⟩ * 0.492    ∣00⟩ * 0                          
+∣01⟩ * 0        ∣01⟩ * 0.481    ∣01⟩ * 0        ∣01⟩ * 0.498                  
+∣10⟩ * 0        ∣10⟩ * 0.519    ∣10⟩ * 0        ∣10⟩ * 0.502                  
+∣11⟩ * 0.494    ∣11⟩ * 0        ∣11⟩ * 0.508    ∣11⟩ * 0                          
 ```
 ---
+## Formatted
 |                 | $\ket{00}$ in | $\ket{01}$ in | $\ket{10}$ in | $\ket{10}$ in   |
 |-----------------|---------------|---------------|---------------|-----------------|
 | $\ket{00}$ out  | $0.506$       | $0    $       | $0    $       | $0.492$         |                  
 | $\ket{01}$ out  | $0    $       | $0.481$       | $0.498$       | $0    $         |               
 | $\ket{10}$ out  | $0    $       | $0.519$       | $0.502$       | $0    $         |               
 | $\ket{11}$ out  | $0.494$       | $0    $       | $0    $       | $0.508$         |                   
-              
 
 {{% /section %}}

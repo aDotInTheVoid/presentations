@@ -2,8 +2,9 @@
 weight=20
 +++
 {{% section %}}
-# Complex
+# Complex Numbers
 ---
+## Type definition
 ```rust
 use approx::{AbsDiffEq, RelativeEq};
 use num_traits::identities::{One, Zero};
@@ -17,6 +18,7 @@ pub struct Complex {
 }
 ```
 ---
+## Constructors
 ```rust
 impl Complex { 
     pub fn new(re: f32, im: f32) -> Self {
@@ -28,6 +30,7 @@ impl Complex {
     }
 ```
 ---
+## Fixed values
 ```rust 
     pub fn zero() -> Complex {
         Complex::new(0.0, 0.0)
@@ -42,6 +45,7 @@ impl Complex {
     }
 ```
 ---
+## Other methods
 ```rust
     pub fn mag_square(self) -> f32 {
         self.re.powi(2) + self.im.powi(2)
@@ -56,6 +60,7 @@ impl Complex {
 }
 ```
 ---
+## Addition
 ```rust
 impl Add<Complex> for Complex {
     type Output = Self;
@@ -74,6 +79,7 @@ impl AddAssign for Complex {
 }
 ```
 ---
+## Multiplication
 ```rust
 impl Mul<Complex> for Complex {
     type Output = Self;
@@ -96,6 +102,7 @@ impl Mul<f32> for Complex {
 }
 ```
 ---
+## Conversion
 ```rust
 impl From<f32> for Complex {
     fn from(num: f32) -> Complex {
@@ -110,9 +117,8 @@ impl From<u8> for Complex {
 }
 ```
 ---
+## Miscellaneous traits
 ```rust
-
-
 impl MulAssign for Complex {
     fn mul_assign(&mut self, other: Complex) {
         *self = *self * other;
@@ -131,6 +137,7 @@ impl Neg for Complex {
 }
 ```
 ---
+## Number traits
 ```rust
 impl Zero for Complex {
     fn zero() -> Self {
@@ -151,6 +158,7 @@ impl One for Complex {
 }
 ```
 ---
+## Approximate Comparison I
 ```rust
 impl AbsDiffEq for Complex {
 
@@ -171,6 +179,7 @@ impl AbsDiffEq for Complex {
 }
 ```
 ---
+## Approximate Comparison II
 ```rust
 impl RelativeEq for Complex {
     fn default_max_relative() -> <f32 as AbsDiffEq>::Epsilon {

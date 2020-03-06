@@ -12,13 +12,6 @@ weight=10
 
 ## Qubits
 
-
-- $ \ket{\psi} = \alpha\ket{0} + \beta\ket{1} $
-- $ \alpha,\ \beta\in\  ℂ $
-- $ |\alpha|^2 + |\beta|^2 = 1$
-- $\ket{0}$ and $\ket{1}$ can be thought as orthogonal basis vectors
-- $|\alpha|^2$ is the probability of observing $\ket{0}$
-
 ---
 
 ## Rust
@@ -58,7 +51,12 @@ fn factorial_iter(i: u64) -> u64 {
     (1..=i).product()
 }
 ```
-
+---
+## Into the code
+- The code as presented will work
+- I've ignored all module paths.
+- The real code has more stuff to make it work for more than the minimal example.
+- Any question's feel free to stop me.
 
 
 {{% /section %}}

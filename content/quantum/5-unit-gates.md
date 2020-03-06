@@ -4,9 +4,8 @@ weight=60
 {{% section %}}
 # Unary Gates
 ---
+## Imports
 ```rust
-//! Gates that map a qubit to a qubit
-
 use std::f32::consts::FRAC_1_SQRT_2;
 
 use crate::complex::Complex;
@@ -20,6 +19,7 @@ use num_traits::identities::{one, zero};
 type Matrix = nalgebra::Matrix2<Complex>;
 ```
 ---
+## Type definition
 ```rust
 #[derive(Debug, Clone, PartialEq)]
 pub struct UnaryGate {
@@ -27,6 +27,18 @@ pub struct UnaryGate {
 }
 ```
 ---
+## Matrix Correctness
+
+- $|\alpha|^2+|\beta|^2 = 1$
+- $\bold{M} \begin{bmatrix}\alpha\cr \beta \end{bmatrix}=\begin{bmatrix}\alpha^{\prime}\cr \beta^{\prime} \end{bmatrix}$
+- $|\alpha^{\prime}|^2+|\beta^{\prime}|^2 = 1$
+- What does this say about $\bold{M}$
+- $\bold{M}^\dagger\bold{M}=\bold{I}$ where $\bold{X}^\dagger=(\bold{M}^\intercal)^*$
+- Proof ~~left as an excessive~~ outside the scope
+- Bonus: geometric interpretation
+
+---
+## Methods
 ```rust
 impl UnaryGate {
     pub fn new(mat: Matrix) -> Self {
@@ -42,6 +54,16 @@ impl UnaryGate {
 }
 ```
 ---
+## Hadamard gate
+- $\bold{H}=\frac{1}{\sqrt{2}}\begin{bmatrix}1&1\cr 1&-1 \end{bmatrix}$
+- $\ket{0} \rarr \frac{\ket{0}+\ket{1}}{2} = \ket{+}$
+- $\ket{1} \rarr \frac{\ket{0}-\ket{1}}{2} = \ket{-}$
+- $\ket{+} \rarr \ket{0}$
+- $\ket{-} \rarr \ket{1}$
+- $\bold{H}^2 = \bold{I}$
+
+---
+## Hadamard gate constructor
 ```rust
 pub fn h() -> UnaryGate {
     UnaryGate::new(

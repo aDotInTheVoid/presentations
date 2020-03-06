@@ -2,21 +2,25 @@
 weight=30
 +++
 {{% section %}}
-# Building a Qubit
+# Qubits
 ---
+## Imports
 ```rust
 use approx::assert_relative_eq;
+
 use nalgebra::Vector2;
+
 use rand::prelude::*;
 use rand::rngs::SmallRng;
 
 use crate::complex::Complex;
 ```
 ---
+## Type definitions
 - $ \ket{\psi} = \alpha\ket{0} + \beta\ket{1} $
 - $ \alpha,\ \beta\in\  ℂ $
 - $ |\alpha|^2 + |\beta|^2 = 1$
-- $|\alpha|^2$ is the probability of observing $\ket{0}$
+- $\ket{0}$ and $\ket{1}$ can be thought as orthogonal basis vectors
 - Stored as $\begin{bmatrix}\alpha\cr \beta \end{bmatrix}$
 ```rust
 #[derive(Debug, Clone, PartialEq)]
@@ -25,6 +29,7 @@ pub struct Qubit {
 }
 ```
 ---
+## Constructors
 ```rust
 impl Qubit {
     pub fn new(p_0: Complex, p_1: Complex) -> Self {
@@ -43,6 +48,7 @@ impl Qubit {
     }
 ```
 ---
+## Sampling
 ```rust
     pub fn sample_is_zero(&self) -> bool {
         SmallRng::from_entropy()
